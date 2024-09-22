@@ -6,14 +6,16 @@
 #define WORDLE_CONSOLE_IO_H
 
 #include <iostream>
+#include <vector>
 
 class Console{
 private:
-    std::string input;
+    std::vector<std::string> input;
+    std::vector<std::string> output;
 public:
     void static ConsoleStartGame();
-    void static ConsoleOutputString(std::string);
-    std::string ConsoleInputWord();
+    void ConsoleOutputString(std::string&);
+    std::string& ConsoleInputWord();
 };
 
 #endif //WORDLE_CONSOLE_IO_H

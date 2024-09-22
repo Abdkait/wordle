@@ -8,11 +8,14 @@ void Console::ConsoleStartGame() {
     std::cout << "enter a word:" << std::endl;
 }
 
-void Console::ConsoleOutputString(std::string str) {
+void Console::ConsoleOutputString(std::string& str) {
     std::cout << str << std::endl;
+    output.push_back(str);
 }
 
-std::string Console::ConsoleInputWord() {
-    std::cin >> input;
-    return input;
+std::string& Console::ConsoleInputWord() {
+    auto* word = new std::string;
+    std::cin >> *word;
+    input.push_back(*word);
+    return *word;
 }

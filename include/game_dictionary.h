@@ -11,11 +11,11 @@
 
 class Game_Dictionary{
 public:
-    void loadIntoWord(std::string word);
-    //Game_Dictionary();
+    void loadIntoWord(std::string& word);
+    explicit Game_Dictionary(const std::string& filename);
     std::string getWord();
 private:
-    static std::vector<std::string> dictionary;
+    std::vector<std::string> dictionary;
 };
 
 #endif //WORDLE_GAME_DICTIONARY_H

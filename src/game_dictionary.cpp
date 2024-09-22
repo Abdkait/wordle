@@ -4,22 +4,43 @@
 
 #include "game_dictionary.h"
 #include <algorithm>
+#include <fstream>
+#include <random>
+#include <stdexcept>
 
-void Game_Dictionary::loadIntoWord(std::string word) {
+void Game_Dictionary::loadIntoWord(std::string& word) {
     dictionary.push_back(word);
 }
-/*
-Game_Dictionary::Game_Dictionary() {
-    std::ifstream file("dictionary.txt");
-    std::string word;
-    while(!file.eof()) {
-        file >> word;
-        loadIntoWord(word);
+
+Game_Dictionary::Game_Dictionary(const std::string& filename) {
+    std::ifstream file(filename);
+    if (!file.is_open()) {
+        std::cerr << "Ошибка при открытии файла: " << filename << std::endl;
+        exit(1);
     }
+
+    std::string word;
+
+    while (std::getline(file, word)) {
+        dictionary.push_back(word);
+    }
+
     file.close();
-}*/
+}
+
+int getRandomNumber(size_t n) {
+    if (n <= 0) {
+        throw std::invalid_argument("n должно быть положительным числом");
+    }
+
+    static std::mt19937 gen(std::random_device{}());
+    static std::uniform_int_distribution<> dis(0, n - 1);
+
+    return dis(gen);
+}
+
 
 std::string Game_Dictionary::getWord() {
-    int r = rand() % dictionary.size(); // not _really_ random
-    return dictionary[r];
+    int rand = getRandomNumber(dictionary.size());
+    return dictionary[rand];
 }
