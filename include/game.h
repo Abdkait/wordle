@@ -11,10 +11,16 @@
 
 class Game{
 private:
+    std::string answer;
     std::string secret_word;
+    size_t len_secret_word;
+    size_t attempts = 0;
 public:
-    Game(Game_Dictionary& dict);
-    std::string check(std::string&);
+    size_t getLen() const;
+    size_t getAttempts() const;
+    bool isGameOn;
+    explicit Game(Game_Dictionary& dict);
+    std::string& check(std::string&);
 };
 
 #endif //WORDLE_GAME_H

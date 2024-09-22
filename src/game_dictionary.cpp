@@ -8,8 +8,8 @@
 #include <random>
 #include <stdexcept>
 
-void Game_Dictionary::loadIntoWord(std::string& word) {
-    dictionary.push_back(word);
+void Game_Dictionary::loadIntoWord(std::string& word, size_t num) {
+    dictionary[word] = num;
 }
 
 Game_Dictionary::Game_Dictionary(const std::string& filename) {
@@ -21,8 +21,10 @@ Game_Dictionary::Game_Dictionary(const std::string& filename) {
 
     std::string word;
 
+    int num = 1;
     while (std::getline(file, word)) {
-        dictionary.push_back(word);
+        dictionary[word] = num;
+        ++num;
     }
 
     file.close();
@@ -41,6 +43,7 @@ int getRandomNumber(size_t n) {
 
 
 std::string Game_Dictionary::getWord() {
-    int rand = getRandomNumber(dictionary.size());
-    return dictionary[rand];
+    auto item = dictionary.begin();
+    std::advance(item, getRandomNumber(dictionary.size()));
+    return item->first;
 }
