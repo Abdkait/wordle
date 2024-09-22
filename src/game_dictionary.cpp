@@ -3,15 +3,23 @@
 //
 
 #include "game_dictionary.h"
-#include <fstream>
+#include <algorithm>
 
 void Game_Dictionary::loadIntoWord(std::string word) {
-    dictionary.insert(word);
+    dictionary.push_back(word);
 }
+/*
+Game_Dictionary::Game_Dictionary() {
+    std::ifstream file("dictionary.txt");
+    std::string word;
+    while(!file.eof()) {
+        file >> word;
+        loadIntoWord(word);
+    }
+    file.close();
+}*/
 
-void Game_Dictionary::loadIntoDictionary() {
-    std::ifstream dict;
-    dict.open("dictionary.txt");
-    getline(str, dict);
-    dict.close()
+std::string Game_Dictionary::getWord() {
+    int r = rand() % dictionary.size(); // not _really_ random
+    return dictionary[r];
 }

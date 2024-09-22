@@ -7,8 +7,6 @@ include_directories(include)
 
 add_executable(wordle main.cpp
         include/game.h
-        include/game_dictionary.h
         src/game.cpp
-        src/game_dictionary.cpp
         include/console_io.h
         src/console_io.cpp)

@@ -7,16 +7,15 @@
 
 #include <iostream>
 #include <string>
-#include <set>
+#include <vector>
 
 class Game_Dictionary{
 public:
     void loadIntoWord(std::string word);
-    void loadIntoDictionary();
+    //Game_Dictionary();
     std::string getWord();
 private:
-    std::string str;
-    std::set<std::string> dictionary;
+    static std::vector<std::string> dictionary;
 };
 
 #endif //WORDLE_GAME_DICTIONARY_H
