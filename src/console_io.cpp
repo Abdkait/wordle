@@ -4,31 +4,17 @@
 
 #include "console_io.h"
 
-void Console::ConsoleStartGame(Game& game) {
-    std::cout << "hidden word length " << game.getLen() << std::endl;
+void Console::ConsoleStartGame(size_t length) {
+    std::cout << "Hidden word length is " << length << std::endl;
+    std::cout << "Enter a word:" << std::endl;
 }
 
-void Console::ConsoleOutputString(std::string& str, Game& game) {
-    bool f = true;
-    for (int i = 0; i < str.size(); ++i){
-        if(str[i] != 'X'){
-            f = false;
-            break;
-        }
-    }
-    if(f){
-        std::cout<< "you won!" <<std::endl;
-        game.isGameOn = false;
-    }else {
-        std::cout << str << std::endl;
-        output.push_back(str);
-    }
+void Console::ConsoleOutputString(const std::string& str) {
+    std::cout << str << std::endl;
 }
 
-std::string& Console::ConsoleInputWord(Game& game) {
-    std::cout << "number of attempts is " << game.getAttempts()+1 <<", enter a word:" << std::endl;
-    std::string word;
-    std::cin >> word;
-    input.push_back(word);
-    return input.back();
+std::string Console::ConsoleInputWord() {
+    std::string temp;
+    std::cin >> temp;
+    return temp;
 }

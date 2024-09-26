@@ -7,16 +7,12 @@
 
 #include <iostream>
 #include <vector>
-#include "game.h"
 
 class Console{
-private:
-    std::vector<std::string> input;
-    std::vector<std::string> output;
-public:
-    void static ConsoleStartGame(Game& game);
-    void ConsoleOutputString(std::string&, Game& game);
-    std::string& ConsoleInputWord(Game& game);
+protected:
+    void static ConsoleStartGame(size_t);
+    void static ConsoleOutputString(const std::string&);
+    static std::string ConsoleInputWord();
 };
 
 #endif //WORDLE_CONSOLE_IO_H

@@ -1,16 +1,12 @@
 #include <iostream>
 #include "console_io.h"
-#include "game_dictionary.h"
 #include "game.h"
 
 int main() {
     const std::string filename = "dictionaryENG.txt";
-    Game_Dictionary dict(filename);
-    Game game(dict);
-    Console cons;
-    Console::ConsoleStartGame(game);
+    Game game(filename);
     while(game.isGameOn){
-        cons.ConsoleOutputString(game.check(cons.ConsoleInputWord(game)), game);
+        game.Start();
     }
     return 0;
 }

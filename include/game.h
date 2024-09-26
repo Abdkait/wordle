@@ -8,19 +8,21 @@
 #include <iostream>
 #include <string>
 #include "game_dictionary.h"
+#include "console_io.h"
 
-class Game{
+class Game: private Game_Dictionary, public Console{
 private:
-    std::string answer;
     std::string secret_word;
     size_t len_secret_word;
     size_t attempts = 0;
+    std::string checkWord(std::string);
+    bool checkWin(const std::string&) const;
+    bool checkLength(const std::string&) const;
+    void Restart();
 public:
-    size_t getLen() const;
-    size_t getAttempts() const;
+    void Start();
     bool isGameOn;
-    explicit Game(Game_Dictionary& dict);
-    std::string& check(std::string&);
+    explicit Game(const std::string& dict);
 };
 
 #endif //WORDLE_GAME_H

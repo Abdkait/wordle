@@ -30,11 +30,11 @@ Game_Dictionary::Game_Dictionary(const std::string& filename) {
     file.close();
 }
 
-int getRandomNumber(size_t n) {
-    if (n <= 0) {
-        throw std::invalid_argument("n должно быть положительным числом");
-    }
+bool Game_Dictionary::checkDictionary(const std::string& str) {
+    return dictionary.find(str) != dictionary.end();
+}
 
+int getRandomNumber(size_t n) {
     static std::mt19937 gen(std::random_device{}());
     static std::uniform_int_distribution<> dis(0, n - 1);
 

@@ -13,8 +13,10 @@ class Game_Dictionary{
 public:
     void loadIntoWord(std::string& word, size_t num);
     explicit Game_Dictionary(const std::string& filename);
+    bool checkDictionary(const std::string&);
     std::string getWord();
 private:
+
     std::map<std::string, size_t> dictionary;
 };
 
