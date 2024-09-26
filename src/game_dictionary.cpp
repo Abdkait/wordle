@@ -25,7 +25,9 @@ Game_Dictionary::Game_Dictionary(const std::string& filename) {
 
     int num = 1;
     while (std::getline(file, word)) {
-        dictionary[word] = num;
+        if(word.size() > 3 && word.size() < 8){
+            dictionary[word] = num;
+        }
         ++num;
     }
 

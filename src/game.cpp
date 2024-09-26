@@ -12,9 +12,20 @@ Game::Game(const std::string& dict)
     , isGameOn(true){}
 
 void Game::Restart() {
-    secret_word = getWord();
-    len_secret_word = secret_word.size();
-    attempts = 0;
+    ConsoleOutputString("Don't you want to play again? (y/n)");
+    std::string temp = ConsoleInputWord();
+    while(temp != "y" && temp != "n"){
+        ConsoleOutputString("y/n: ");
+        temp = ConsoleInputWord();
+    }
+    if(temp == "y"){
+        secret_word = getWord();
+        len_secret_word = secret_word.size();
+        attempts = 0;
+        return;
+    } else{
+        isGameOn = false;
+    }
 }
 
 void Game::Start() {
@@ -23,7 +34,12 @@ void Game::Start() {
     }
     std::string temp = ConsoleInputWord();
     while(!(checkLength(temp) && checkDictionary(temp))){
-        if(!checkLength(temp)){
+        if(temp == "_restart_"){
+            ConsoleOutputString("you lose!");
+            Restart();
+            return;
+        }
+        else if(!checkLength(temp)){
             ConsoleOutputString("Use correct length!");
         }else{
             ConsoleOutputString("Not found!");
@@ -34,17 +50,7 @@ void Game::Start() {
     temp = checkWord(temp);
     if(checkWin(temp)){
         ConsoleOutputString("you win!");
-        ConsoleOutputString("Don't you want to play again? (y/n)");
-        temp = ConsoleInputWord();
-        while(temp != "y" && temp != "n"){
-            temp = ConsoleInputWord();
-        }
-        if(temp == "y"){
-            Restart();
-            return;
-        } else{
-            isGameOn = false;
-        }
+        Restart();
     }else {
         ConsoleOutputString(temp);
     }
