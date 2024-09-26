@@ -36,11 +36,12 @@ void Game::Start() {
         ConsoleOutputString("you win!");
         ConsoleOutputString("Don't you want to play again? (y/n)");
         temp = ConsoleInputWord();
-        while(temp != "y" or temp != "n"){
+        while(temp != "y" && temp != "n"){
             temp = ConsoleInputWord();
         }
         if(temp == "y"){
             Restart();
+            return;
         } else{
             isGameOn = false;
         }

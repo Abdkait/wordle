@@ -21,6 +21,8 @@ Game_Dictionary::Game_Dictionary(const std::string& filename) {
 
     std::string word;
 
+    std::getline(file, word);
+
     int num = 1;
     while (std::getline(file, word)) {
         dictionary[word] = num;
